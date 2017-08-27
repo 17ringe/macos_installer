@@ -3,4 +3,4 @@ This module is under construction. The goal is to allow an Ansible user to insta
 
 #### Current Limitations
 * Will only handle .app bundles in a .dmg
-* May yield unpredictable results if more than one .app bundle is in a given .dmf
+* May yield unpredictable results if more than one .app bundle is in a given .dmg
