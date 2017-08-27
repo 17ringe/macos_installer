@@ -56,20 +56,20 @@ def install_pkg_from_app(appfile, mount_path, force):
     if len(pkgs) == 1:
         subprocess.call(['sudo', 'installer', '-pkg',
                          pkgs[0], '-target', '/'])
+        os.chdir(wd)
         subprocess.call(['hdiutil', 'detach', mount_path])
         meta = dict(
             reinstalled=False,
             state='present'
         )
-        os.chdir(wd)
         return changed, meta
     else:
+        os.chdir(wd)
         subprocess.call(['hdiutil', 'detach', mount_path])
         changed=False
         meta = dict(
             state='absent'
         )
-        os.chdir(wd)
         return changed, meta
 
 
