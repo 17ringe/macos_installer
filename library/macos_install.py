@@ -83,10 +83,22 @@ def install(data):
     subprocess.call(['hdiutil', 'convert', path_to_dmg, '-format',
                      'UDTO', '-o', name])
 
+    # Because the mount path does not always follow the same naming convention
+    # as the data['app_name'] field, track all files in /Volumes to ensure
+    # that the new Volume can be found after calling hdiutil attach.
+
+    default_volumes = [v for v in os.listdir('/Volumes')]
+
     # Mount dmg
 
     subprocess.call(['hdiutil', 'attach', new_path])
-    mount_path = '/Volumes/{}'.format(name)
+
+    # Find the mount path. Only one new volume should exist, so use
+    # volumes[0]
+
+    volumes = [v for v in os.listdir('/Volumes') if v not in
+               default_volumes]
+    mount_path = '/Volumes/{}'.format(volumes[0])
 
     # Inspect mounted image.
 
