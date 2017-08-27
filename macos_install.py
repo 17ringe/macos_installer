@@ -92,11 +92,11 @@ def main():
 
     amodule = AnsibleModule(
         argument_spec=dict(
-            app_name=dict(required=True, type=str),
-            dmg_path=dict(required=True, type=str),
-            force=dict(default=False, type=bool),
+            app_name=dict(required=True, type='str'),
+            dmg_path=dict(required=True, type='str'),
+            force=dict(default=False, type='bool'),
             state=dict(choices=['present', 'absent'],
-                       type=str)
+                       type='str')
         )
     )
     choice_map = dict(
