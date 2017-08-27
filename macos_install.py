@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 """
 This assumes a user has already downloaded a .dmg and is trying
@@ -84,8 +84,26 @@ def install(data):
     return changed, meta
 
 
-def uninstall(data=None):
-    pass
+def uninstall(data):
+
+    installed_name = data['installed_name']
+    app_path = '/Applications/{}'.format(installed_name)
+    installed = os.path.exists(app_path)
+    changed = False
+
+    if installed:
+        # Delete .app
+        subprocess.call(['rm', '-rf', app_path])
+        changed = True
+        meta = dict(
+            state='absent'
+        )
+    else:
+        meta = dict(
+            state='absent'
+        )
+
+    return changed, meta
 
 
 def main():
@@ -95,6 +113,7 @@ def main():
             app_name=dict(required=True, type='str'),
             dmg_path=dict(required=True, type='str'),
             force=dict(default=False, type='bool'),
+            installed_name=dict(default='no_path', type='str'),
             state=dict(choices=['present', 'absent'],
                        type='str')
         )
