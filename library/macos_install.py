@@ -47,6 +47,30 @@ def install_app(appfile, mount_path, new_path, force):
     return changed, meta
 
 
+def install_pkg_from_app(appfile, mount_path, force):
+
+    wd = os.getcwd()
+    changed = True
+    os.chdir('{}/{}/Contents'.format(mount_path, appfile))
+    pkgs = [s for s in os.getcwd() if ".pkg" in s]
+    if len(pkgs) == 1:
+        subprocess.call(['sudo', 'installer', '-pkg',
+                         pkgs[0], '-target', '/'])
+        meta = dict(
+            reinstalled=False,
+            state='present'
+        )
+        os.chdir(wd)
+        return changed, meta
+    else:
+        changed=False
+        meta = dict(
+            state='absent'
+        )
+        os.chdir(wd)
+        return changed, meta
+
+
 def install(data):
 
     path_to_dmg = data['dmg_path']
@@ -75,6 +99,20 @@ def install(data):
     matching = [s for s in files if ".app" in s]
     if len(matching) == 1:
         changed, meta = install_app(matching[0], mount_path, new_path, force)
+        return changed, meta
+
+
+    elif len(matching) > 1:
+        for f in matching:
+            if f == "Install.app":
+                changed, meta = install_pkg_from_app(f, mount_path, force)
+                return changed, meta
+
+        changed = False
+        meta = dict(
+            state='absent'
+        )
+
     else:
         changed = False
         meta = dict(
