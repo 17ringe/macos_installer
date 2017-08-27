@@ -106,9 +106,9 @@ def install(data):
 
     files = [f for f in os.listdir(mount_path)]
 
-    # This version only handles copying one app to the /Applications folder
-    # Need to handle pkg and zip installs
-    # Need to handle cases where more than one .app is in the image
+    # This version only handles copying one app to the /Applications folder,
+    # or getting a .pkg installer from an Install.app bundle.
+    # Need to handle zip installs and other edge cases.
 
     matching = [s for s in files if ".app" in s]
     if len(matching) == 1:
