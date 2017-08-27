@@ -1,2 +1,10 @@
 ---
-# defaults file for macos_installer/
+download_path: /tmp
+
+dmgs:
+  - { name: "Steam",
+      url:  "https://steamcdn-a.akamaihd.net/client/installer/steam.dmg",
+      force: True,
+      installed_name: "no_path",
+      state: "present"
+      }

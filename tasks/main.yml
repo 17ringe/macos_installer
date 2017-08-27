@@ -1,2 +1,15 @@
 ---
-# tasks file for macos_installer/
+- name: Download .dmg
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ download_path }}/{{ item.name }}.dmg"
+  with_items: "{{ dmgs }}"
+
+- name: Install
+  macos_install:
+    app_name: "{{ item.name }}"
+    dmg_path: "{{ download_path }}/{{ item.name }}.dmg"
+    force: "{{ item.force }}"
+    installed_name: "{{ item.installed_name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ dmgs }}"
