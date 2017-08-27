@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 """
-This assumes a user has already downloaded a .dmg and is trying
-to install it to a mac os system.
+Custom module for the macos_install Ansible role to download and install
+software packed in the .dmg format.
 
 @author: pipersniper
 """
