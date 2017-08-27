@@ -2,9 +2,10 @@
 download_path: /tmp
 
 dmgs:
-  - { name: "Steam",
+  - {
+      name: "Steam",
       url:  "https://steamcdn-a.akamaihd.net/client/installer/steam.dmg",
-      force: True,
-      installed_name: "no_path",
+      force: False,
+      installed_name: "Steam.app",
       state: "present"
-      }
+    }

@@ -118,10 +118,12 @@ def main():
                        type='str')
         )
     )
+
     choice_map = dict(
         present=install,
         absent=uninstall
     )
+
     has_changed, result = choice_map.get(amodule.params['state'])(amodule.params)
     amodule.exit_json(changed=has_changed, meta=result)
 

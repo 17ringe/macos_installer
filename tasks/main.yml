@@ -13,3 +13,9 @@
     installed_name: "{{ item.installed_name }}"
     state: "{{ item.state }}"
   with_items: "{{ dmgs }}"
+
+- name: Cleanup
+  file:
+    state: "absent"
+    path: "{{ download_path }}/{{ item.name }}.dmg"
+  with_items: "{{ dmgs }}"
