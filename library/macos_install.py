@@ -52,7 +52,7 @@ def install_pkg_from_app(appfile, mount_path, force):
     wd = os.getcwd()
     changed = True
     os.chdir('{}/{}/Contents'.format(mount_path, appfile))
-    pkgs = [s for s in os.getcwd() if ".pkg" in s]
+    pkgs = [s for s in os.listdir(os.getcwd()) if ".pkg" in s]
     if len(pkgs) == 1:
         subprocess.call(['sudo', 'installer', '-pkg',
                          pkgs[0], '-target', '/'])
