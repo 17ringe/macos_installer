@@ -4,6 +4,10 @@ This role is under construction. The goal is to allow an Ansible user to automat
 * Installing the .dmg files
 * Removing the downloaded .dmg files after installation.
 
+### alert
+This role will be refactored. The download portion will be pulled from tasks. This role is expected to be used in conjunction with pipersniper\ansible_samba; e.g., when provisioning a system, a user can pull required .dmg files from URLs, then from samba shares, and then this role will be used to install all dmgs loaded.
+
+
 #### Current Limitations
 * If there is a single .app bundle in an attached .dmg, it will
 be installed.
