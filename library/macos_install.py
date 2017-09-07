@@ -47,7 +47,7 @@ def install_app(appfile, mount_path, new_path, force):
     return changed, meta
 
 
-def install_pkg_from_app(appfile, mount_path, force):
+def install_pkg_from_app(appfile, mount_path, new_path, force):
 
     wd = os.getcwd()
     changed = True
@@ -121,7 +121,8 @@ def install(data):
     elif len(matching) > 1:
         for f in matching:
             if f == "Install.app":
-                changed, meta = install_pkg_from_app(f, mount_path, force)
+                changed, meta = install_pkg_from_app(f, mount_path, new_path,
+                                                    force)
                 return changed, meta
 
         changed = False

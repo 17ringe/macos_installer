@@ -1,2 +1,15 @@
----
+galaxy_info:
+  author: pipersniper
+
+  license: MIT
+
+  min_ansible_version: 1.9
+
+  platforms:
+  - name: Mac OS
+    versions:
+    - Sierra +
+
+  galaxy_tags: []
+
 dependencies: []
