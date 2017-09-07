@@ -6,9 +6,9 @@ galaxy_info:
   min_ansible_version: 1.9
 
   platforms:
-  - name: OSX
+  - name: macOS
     versions:
-    - 10.12
+    - Sierra
 
   galaxy_tags: []
 
