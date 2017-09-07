@@ -3,9 +3,9 @@ dmg_path: /tmp
 
 dmgs:
   - {
-      name: "Steam",
-      url:  "https://steamcdn-a.akamaihd.net/client/installer/steam.dmg",
+      name: "Test",
+      url:  "https://example.com/steam.dmg",
       force: False,
-      installed_name: "Steam.app",
+      installed_name: "Test.app",
       state: "present"
     }
