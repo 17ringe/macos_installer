@@ -8,7 +8,7 @@ galaxy_info:
   platforms:
   - name: Mac OS
     versions:
-    - Sierra
+    - 10.12
 
   galaxy_tags: []
 
