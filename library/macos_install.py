@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 """
-Custom module for the macos_install Ansible role to download and install
+Custom module for the macos_install Ansible role to install
 software packed in the .dmg format.
 
 @author: pipersniper
