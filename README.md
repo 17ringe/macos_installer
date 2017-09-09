@@ -41,7 +41,6 @@ playbook.yml
     - config.yml
   
   pre_tasks:
-  
     - name: Download .dmgs
       get_url:
         url: "{{ item.url }}"
