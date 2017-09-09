@@ -12,15 +12,44 @@ This role is under construction. The goal is to allow an Ansible user to automat
         * This would require the installed_name attribute to be set (string).
     * force (optional) will attempt to reinstall even if app is already present (boolean, True/False).
     
-#### Example
+#### Example Usage
+config.yml
 ```
-- name: Install dmg
-  macos_install:
-    app_name: Test
-    dmg_path: "{{ dmg_path }}\Test.dmg"
-    force: False
-    installed_name: "no_path"
-    state: "present"
+dmg_path: "/path/to/download/dmgs"
+
+dmgs:
+  - {
+      name: "Test",
+      url: "https://example.com/path/to/app",
+      force: False,
+      installed_name: "no_path",
+      state: "present"
+    }
+  - {
+      name: "Test2"
+      url: "https://example2.com/path/to/app",
+      force: False,
+      installed_name: "no_path",
+      state: "present"
+    }
+```
+playbook.yml
+```
+- hosts: all
+  
+  vars_files:
+    - config.yml
+  
+  pre_tasks:
+  
+    - name: Download .dmgs
+      get_url:
+        url: "{{ item.url }}"
+        dest: "{{ dmg_path }}/{{ item.name }}.dmg"
+      with_items: "{{ dmgs }}"
+      
+  roles:
+    - role: pipersniper.macos_installer
 ```
 
 #### Current Limitations
