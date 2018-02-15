@@ -10,6 +10,6 @@
 
 - name: Cleanup
   file:
-    state: "absent"
+    state: "{{ item.dmg_stat | default('absent') }}"
     path: "{{ dmg_path }}/{{ item.name }}.dmg"
   with_items: "{{ dmgs }}"
